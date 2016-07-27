@@ -5,24 +5,18 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+   <h:head>Интернет магазин электроники</h:head>
+   <h:outputText value="Добро пожаловать"/>
 
-      <h:body>
-         <h:head><title>Login Page</title></h:head>
-         <br/>
-         Test text
-         <br/>
-         <h:outputText value="Test jsf render"/>
-         <br/>
-         <h:form>
-            <p:panel>
-               <h:panelGrid columns="2">
-                  <h:outputText value="Логин"/>
-                  <h:inputText value="#{mainBean.user}"/>
-                  <h:outputText value="Пароль"/>
-                  <h:inputSecret value="#{mainBean.password}"/>
-               </h:panelGrid>
-               <h:commandButton value="Вход" action="#{mainBean.checkUser}"/>
-            </p:panel>
-         </h:form>
-      </h:body>
+   <h:form id="form">
+      <!--<p:repeat value="#{productBean.products}" var="products">
+         <h:panelGrid columns="2" columnClasses="logo,detail">
+            <p:commandLink update=":form:productDetail" oncomplete="PF(productDialog).show()">
+               <f:setPropertyActionListener value="#{product}" target="#{productBean.selectedProduct}"/>
+               <p:graphicImage name="images/"/>
+            </p:commandLink>
+         </h:panelGrid>
+      </p:repeat>-->
+   </h:form>
+   
 </html>

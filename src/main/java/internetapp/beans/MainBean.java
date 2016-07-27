@@ -17,7 +17,7 @@ public class MainBean {
         return user;
     }
 
-    public void setUset(String user){
+    public void setUser(String user){
         this.user = user;
     }
 
