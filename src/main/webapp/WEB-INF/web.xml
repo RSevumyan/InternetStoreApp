@@ -23,6 +23,10 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/applicationContext.xml</param-value>
     </context-param>
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>glass-x</param-value>
+    </context-param>
 
     <servlet>
         <servlet-name>facesServlet</servlet-name>

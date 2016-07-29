@@ -15,8 +15,8 @@ import java.util.ArrayList;
 public class ProductServiceImpl implements ProductService{
 
     private int productsQ = 5;
-    private String[] brands = {"Apple", "HTC", "Samsung", "Sony", "Xiaomi"};
-    private String[] descriptions = {"","","","",""};
+    private String[] brands = {"Apple Iphone 6S", "HTC 10", "Samsung Galaxy S7", "Sony Xperia X", "Xiaomi RedMi 3"};
+    private String[] descriptions = {"Бесполезный кирпич","Строгий и элегантный телефон","Инновации на максимуме","Стиль и надежность","Китайское откровение"};
     private Double[] prices = {40000.00,35000.00,36000.00,38000.00,15000.00};
     private int[] quantities = {100, 20, 50, 30, 25};
 
