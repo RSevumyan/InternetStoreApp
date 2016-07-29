@@ -4,19 +4,62 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-   <h:head>Интернет магазин электроники</h:head>
-   <h:outputText value="Добро пожаловать"/>
+
+   <h:outputText value="Добро пожаловать в интернет магазин электроники" style="font-weight: bold"/>
+   <br/>
+   <br/>
 
    <h:form id="form">
-      <!--<p:repeat value="#{productBean.products}" var="products">
-         <h:panelGrid columns="2" columnClasses="logo,detail">
-            <p:commandLink update=":form:productDetail" oncomplete="PF(productDialog).show()">
+
+     <ui:repeat value="#{productBean.products}" var="productV" >
+         <h:panelGrid columns="1" columnClasses="detail">
+           <!-- <p:commandLink update=":form:productDetail" oncomplete="PF(productDialog).show()">
                <f:setPropertyActionListener value="#{product}" target="#{productBean.selectedProduct}"/>
-               <p:graphicImage name="images/"/>
-            </p:commandLink>
+            </p:commandLink>-->
+
+            <p:outputPanel>
+               <h:panelGrid columns="1" cellpadding="5">
+                  <h:outputText value="Наменование:" />
+                  <h:outputText value="#{productV.name}" style="font-weight: bold"/>
+
+                  <h:outputText value="Описание:" />
+                  <h:outputText value="#{productV.description}" style="font-weight: bold"/>
+
+                  <h:outputText value="Цена:" />
+                  <h:outputText value="#{productV.price}" style="font-weight: bold"/>
+
+                  <h:outputText value="Количество:" />
+                  <h:outputText value="#{productV.quantity}" style="font-weight: bold"/>
+
+               </h:panelGrid>
+            </p:outputPanel>
+
          </h:panelGrid>
-      </p:repeat>-->
+         <hr />
+      </ui:repeat>
+      <!--<p:dialog header="Product Info" widgetVar="productDialog" modal="true" showEffect="blind" hideEffect="explode" resizable="false">
+         <p:outputPanel id="productDetail" style="text-align:center;">
+            <p:panelGrid  columns="2" rendered="#{not empty productBean.selectedProduct}" columnClasses="label,value">
+
+               <h:outputText value="Наименование:" />
+               <h:outputText value="#{productBean.selectedProduct.name}" />
+
+               <h:outputText value="Описание" />
+               <h:outputText value="#{productBean.selectedProduct.description}" />
+
+               <h:outputText value="Цена:" />
+               <h:outputText value="#{productBean.selectedProduct.price}"/>
+
+            </p:panelGrid>
+         </p:outputPanel>
+      </p:dialog>-->
+
+   </h:form>
+
+   <h:form>
+      <p:editor value="value" />
    </h:form>
    
 </html>

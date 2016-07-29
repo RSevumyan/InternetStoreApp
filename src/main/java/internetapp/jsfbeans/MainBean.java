@@ -1,4 +1,4 @@
-package internetapp.beans;
+package internetapp.jsfbeans;
 
 
 import javax.faces.bean.ManagedBean;
