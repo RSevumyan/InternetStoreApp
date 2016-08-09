@@ -1,8 +1,7 @@
-package internetapp.common;
-
-import org.springframework.stereotype.Service;
+package internetapp.logic;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Sevumyan on 29.07.2016.
@@ -11,6 +10,6 @@ import java.util.ArrayList;
 
 public interface ProductService {
 
-    public ArrayList<Product> init();
+    public List<Product> init();
 
 }

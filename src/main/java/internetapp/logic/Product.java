@@ -1,6 +1,6 @@
-package internetapp.common;
+package internetapp.logic;
 
-import org.springframework.stereotype.Service;
+import javax.persistence.*;
 
 /**
  * Created by Sevumyan on 27.07.2016.
@@ -8,26 +8,59 @@ import org.springframework.stereotype.Service;
  * Класс, содержащий в себе информацию о реализуемом товаре.
  */
 
-@Service("product")
+@Entity
+@Table(name ="products")
 public class Product {
+
+    /**
+     * ID товара
+     */
+    @Id
+    @Column(name="id")
+    //@GeneratedValue
+    private Integer id;
+
     /**
      * Наименование товара
      */
+    @Column(name="name")
     private String name;
+
     /**
      * Цена товара
      */
+    @Column(name="price")
     private double price;
+
     /**
      * Описание товара
      */
+    @Column(name="description")
     private String description;
+
     /**
      * количество товара
      */
-    private int quantity;
+    @Column(name="quantity")
+    private short quantity;
 
     /**
+     * Setter ID
+     * @param id - уникальный идентификатор товара
+     */
+    public void setId(Integer id){
+        this.id=id;
+    }
+
+    /**
+     * Getter ID
+     * @return ID товара
+     */
+    public Integer getId(){
+        return this.id;
+    }
+
+    /*
      * Метод выставления наименования товара.
      * @param name - Наименование товара;
      */
@@ -81,7 +114,7 @@ public class Product {
      * Метод выставления количества товара.
      * @param quantity - количество товара.
      */
-    public void setQuantity(int quantity){
+    public void setQuantity(short quantity){
         this.quantity=quantity;
     }
 
@@ -97,7 +130,7 @@ public class Product {
      *
      * @param newQ - новое количество товара.
      */
-    public void changeQuantity(int newQ){
+    public void changeQuantity(short newQ){
         this.quantity=newQ;
     }
 
@@ -108,5 +141,14 @@ public class Product {
     public boolean availability(){
         if(quantity<1)return false;
         else return true;
+    }
+
+    @Override
+    public String toString(){
+        return  this.id+"\t"+
+                this.name +"\t"+
+                this.price+"\t"+
+                this.description+"\t"+
+                this.quantity+"\t";
     }
 }

@@ -1,5 +1,4 @@
-package internetapp.jsfbeans;
-
+package internetapp.web;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -8,25 +7,25 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-import internetapp.common.Product;
-import internetapp.common.impl.ProductServiceImpl;
+import internetapp.dbconnection.impl.ProductDAOImpl;
+import internetapp.dbconnection.interfaces.ProductDAO;
+import internetapp.logic.Product;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Sevumyan on 27.07.2016.
- *
+ * <p>
  * Класс Bean для взаимодействия с товарами.
  */
 @Controller
-@ManagedBean(name="productBean")
+@ManagedBean(name = "productBean")
 @SessionScoped
 public class ProductBean {
 
@@ -43,7 +42,7 @@ public class ProductBean {
     @Autowired
     private Product selectedProduct;
 
-   @ManagedProperty(value = "#{productServiceImpl}")
+   /*@ManagedProperty(value = "#{productServiceImpl}")
     private ProductServiceImpl service;
 
     @PostConstruct
@@ -51,23 +50,33 @@ public class ProductBean {
         this.products=service.init();
     }
 
+    public void setService(ProductServiceImpl service) {
+        this.service = service;
+    }*/
+
+    @ManagedProperty(value = "#{productDao}")
+    private ProductDAO productDao;
+
+    @PostConstruct
+    public void init() {
+        this.products = productDao.getList();
+    }
+
+    public void setProductDao(ProductDAO productDao) {
+        this.productDao = productDao;
+    }
+
     public List<Product> getProducts() {
         return products;
     }
 
-    public Product getSelectedProduct(){
+    public Product getSelectedProduct() {
         return selectedProduct;
-
     }
 
-    public void setSelectedProduct(Product selectedProduct){
+    public void setSelectedProduct(Product selectedProduct) {
         this.selectedProduct = selectedProduct;
     }
-
-    public void setService(ProductServiceImpl service) {
-        this.service = service;
-    }
-
 
     public void onDateSelect(SelectEvent event) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -89,6 +98,5 @@ public class ProductBean {
     public void setDate(Date date) {
         this.date = date;
     }
-
 }
 

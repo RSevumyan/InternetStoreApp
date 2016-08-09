@@ -1,16 +1,21 @@
-package internetapp.common.impl;
+package internetapp.logic.impl;
 
-import internetapp.common.Product;
-import internetapp.common.ProductService;
+import internetapp.dbconnection.impl.ProductDAOImpl;
+import internetapp.logic.Product;
+import internetapp.logic.ProductService;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
+import javax.faces.bean.ManagedProperty;
+import java.util.List;
 
 /**
  * Created by Sevumyan on 27.07.2016
  *
  * Класс работы со списком товаров(пока только инициализация)
  */
+@Controller
 @Service("productServiceImpl")
 public class ProductServiceImpl implements ProductService{
 
@@ -20,22 +25,18 @@ public class ProductServiceImpl implements ProductService{
     private Double[] prices = {40000.00,35000.00,36000.00,38000.00,15000.00};
     private int[] quantities = {100, 20, 50, 30, 25};
 
+    @ManagedProperty(value = "#{productDAOImpl}")
+    private ProductDAOImpl productDAOImpl;
+
+    public void setProductDAOImpl(ProductDAOImpl productDAOImpl){this.productDAOImpl = productDAOImpl;}
+
     /**
      * Метод инициалиции списка товаров.
      * @return Список товаров.
      */
-    public ArrayList<Product> init(){
-        ArrayList<Product> products = new ArrayList<Product>();
-        Product product;
-        for (int i =0;i< productsQ; i++){
-            products.add(new Product());
-            product = products.get(i);
-            product.setName(brands[i]);
-            product.setDescription(descriptions[i]);
-            product.setPrice(prices[i]);
-            product.setQuantity(quantities[i]);
-        }
-        return products;
+    @Transactional
+    public List<Product> init(){
+        return  productDAOImpl.getList();
     }
 
 }
