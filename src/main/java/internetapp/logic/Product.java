@@ -1,6 +1,9 @@
 package internetapp.logic;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
 
 /**
  * Created by Sevumyan on 27.07.2016.
@@ -143,6 +146,10 @@ public class Product {
         else return true;
     }
 
+    /**
+     * Переопределенный метод toString
+     * @return Строка, содержащая всю информацию по сущности.
+     */
     @Override
     public String toString(){
         return  this.id+"\t"+

@@ -1,6 +1,6 @@
 package internetapp.logic.impl;
 
-import internetapp.dbconnection.impl.ProductDAOImpl;
+import internetapp.dbconnection.interfaces.OverallDAO;
 import internetapp.logic.Product;
 import internetapp.logic.ProductService;
 import org.springframework.stereotype.Controller;
@@ -26,9 +26,9 @@ public class ProductServiceImpl implements ProductService{
     private int[] quantities = {100, 20, 50, 30, 25};
 
     @ManagedProperty(value = "#{productDAOImpl}")
-    private ProductDAOImpl productDAOImpl;
+    private OverallDAO<Product> overallDAO;
 
-    public void setProductDAOImpl(ProductDAOImpl productDAOImpl){this.productDAOImpl = productDAOImpl;}
+    public void setOverallDAOImpl(OverallDAO<Product> overallDAO){this.overallDAO = overallDAO;}
 
     /**
      * Метод инициалиции списка товаров.
@@ -36,7 +36,7 @@ public class ProductServiceImpl implements ProductService{
      */
     @Transactional
     public List<Product> init(){
-        return  productDAOImpl.getList();
+        return  overallDAO.getList();
     }
 
 }
