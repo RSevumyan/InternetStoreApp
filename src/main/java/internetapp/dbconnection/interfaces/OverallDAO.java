@@ -1,6 +1,5 @@
 package internetapp.dbconnection.interfaces;
 
-import internetapp.logic.Product;
 import java.util.List;
 
 /**
